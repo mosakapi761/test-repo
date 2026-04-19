@@ -1,0 +1,16 @@
+name: String and Json
+on: push
+jobs:
+  generate_string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: printenv | grep '_FUNC'
+        env:
+          FORMAT_FUNC: ${{ format('{0}, {1}', 'Hi', 'world') }}
+          JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
+  json_dump:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${CONTEXT}"
+        env:
+          CONTEXT: ${{ toJSON(github) }}
