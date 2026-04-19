@@ -1,0 +1,17 @@
+name: Status Check functions
+run-name: Status Check by ${{ github.actor }}
+on: push
+jobs:
+  fail:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1
+      - run: echo "Hello"
+        if: ${{ failure() }}
+  skip-or-run:
+    name: Skiiiiiip or run~
+    if: ${{ github.actor == 'mosakapi761' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello!!!!
+        run: echo "Hello I am octcat"
